@@ -1,0 +1,2546 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="gb2312">
+    <!-- <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <title>辽科大疫情防控后台管理</title>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style_admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css">
+    <!-- <link rel="apple-touch-icon-precomposed" href="../../img/USATL.png">
+     -->
+    <link rel="shortcut icon" href="../../img/logo.ico"/>
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+
+
+</head>
+
+<body class="user-select">
+<section class="container-fluid">
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span
+                            class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <!-- navbar-brand默认是放文字的，也可以放小图片，如果放图片可以用margin -->
+                    <a class="navbar-brand" href="/admin/toIndex_admin">辽科大疫情防控后台管理</a></div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right" id="LoginStatus">
+                        <li><a href="">消息 <span class="badge" id="oneMes"></span></a></li>
+
+                        <li><a href="/admin/toLogin_admin" id="notLogin">登录</a></li>
+                        <li id="wechat_1"><a data-toggle="modal" data-target="#WeChat">帮助</a></li>
+                    </ul>
+                    <form action="" method="post" class="navbar-form navbar-right" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" autocomplete="off" placeholder="键入关键字搜索"
+                                   maxlength="15">
+                            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">搜索</button>
+              </span></div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 左侧导航栏开始 -->
+    <div class="row">
+        <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
+            <ul class="nav nav-sidebar" id="ul_1">
+                <li class="active"><a href="/admin/toIndex_admin">主页</a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar" id="ul_2">
+                <li><a class="dropdown-toggle" id="otherMenu_1" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">打卡情况</a>
+                    <ul class="dropdown-menu" aria-labelledby="otherMenu_1">
+                        <li><a href="#" id="SignInRecords">查看打卡记录</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" id="NotCheckIn">今日未打卡人员提醒</a></li>
+                    </ul>
+                </li>
+                <li><a class="dropdown-toggle" id="userMenu_1" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">异常信息查看</a>
+                    <ul class="dropdown-menu" aria-labelledby="userMenu_1">
+                        <li><a href="#" id="tem_abnormal">体温异常人员</a></li>
+                        <li><a href="#" id="loc_change">地址发生变化人员</a></li>
+                    </ul>
+                </li>
+
+                <li><a class="dropdown-toggle" id="userMenu_2" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">通知</a>
+                    <ul class="dropdown-menu" aria-labelledby="userMenu_2">
+                        <li><a data-toggle="modal" data-target="#insertNotice">发布疫苗通知</a></li>
+                        <li><a href="#" id="noticeManage">通知管理</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" id="orderCondition">查看预约情况</a></li>
+                    </ul>
+                </li>
+
+                <li><a class="dropdown-toggle" id="userMenu_3" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">信息收集</a>
+                    <ul class="dropdown-menu" aria-labelledby="userMenu_3">
+                        <li><a id="insertCollect">发布收集项目</a></li>
+                        <li><a id="selectCollect">查看/下载收集项目</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <ul class="nav nav-sidebar" id="ul_3">
+                <li><a class="dropdown-toggle" id="otherMenu_2" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">人员信息管理</a>
+                    <ul class="dropdown-menu" aria-labelledby="otherMenu_2">
+                        <li><a href="#" id="user_manage">用户信息管理</a></li>
+                        <li><a href="#" id="visitor_manage">访客信息管理</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" id="applyForEpc_manage">防疫员申请管理</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a class="dropdown-toggle" id="otherMenu_3" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">留言管理</a>
+                </li>
+
+                <li><a class="dropdown-toggle" id="otherMenu_5" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">地址管理</a>
+                    <ul class="dropdown-menu" aria-labelledby="otherMenu_5">
+                        <li><a data-toggle="modal" data-target="#insertLocation">增加新地址</a></li>
+                        <li><a href="#" id="updateLocationInfo">修改地址信息</a></li>
+                    </ul>
+                </li>
+
+                <li><a class="dropdown-toggle" id="otherMenu_4" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">个人信息管理</a>
+                    <ul class="dropdown-menu" aria-labelledby="otherMenu_5">
+                        <li><a data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
+                        <li><a data-toggle="modal" data-target="#seeUserLoginlog">登陆记录</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </aside>
+        <!-- 中心主体内容开始 -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+            <h1 class="page-header">信息总览</h1>
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>文章</h4>
+                    <span class="text-muted">0 条</span></div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>评论</h4>
+                    <span class="text-muted">0 条</span></div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>友链</h4>
+                    <span class="text-muted">0 条</span></div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>访问量</h4>
+                    <span class="text-muted">0</span></div>
+            </div>
+            <div style="width:850px;height:500px; margin-top: 30px;margin-left: 150px;" id="chart_one">
+
+            </div>
+            <footer>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                        <tr>
+                            <td><span style="display:inline-block; width:8em">版权所有</span> POWERED BY WY ALL RIGHTS
+                                RESERVED
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </footer>
+        </div>
+        <!-- 中心主体内容结束 -->
+
+    </div>
+    <!-- 左侧导航栏结束 -->
+</section>
+
+
+<!--个人信息模态框开始-->
+<div class="modal fade" id="seeUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">个人信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td wdith="20%">用户名:</td>
+                            <td width="80%"><input type="text" value="admin" class="form-control" id="username"
+                                                   maxlength="10" autocomplete="off" readonly/></td>
+                        </tr>
+                        <tr>
+                            <td wdith="20%">电话:</td>
+                            <td width="80%"><input type="text" value="0412-4877168" class="form-control" name="usertel"
+                                                   maxlength="13" autocomplete="off" readonly/></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr></tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--个人信息模态框结束-->
+
+<!--个人登录记录模态框开始-->
+<div class="modal fade" id="seeUserLoginlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">登录记录</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table" style="margin-bottom:0px;">
+                    <thead>
+                    <tr>
+                        <th>登录IP</th>
+                        <th>登录时间</th>
+                        <th>状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>::1:55570</td>
+                        <td>2021-05-08 15:50:28</td>
+                        <td>成功</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--个人登录记录模态框结束-->
+
+<!--微信二维码模态框开始-->
+<div class="modal fade user-select" id="WeChat" tabindex="-1" role="dialog" aria-labelledby="WeChatModalLabel">
+    <div class="modal-dialog" role="document" style="margin-top:120px;max-width:280px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+            </div>
+            <div class="modal-body" style="text-align:center"><img src="../../img/weixin.png" alt=""
+                                                                   style="cursor:pointer"/></div>
+        </div>
+    </div>
+</div>
+<!--微信二维码模态框结束-->
+
+<!--提示模态框开始-->
+<div class="modal fade user-select" id="areDeveloping" tabindex="-1" role="dialog"
+     aria-labelledby="areDevelopingModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
+            </div>
+            <div class="modal-body"><img src="../../img/baoman_01.gif" alt="深思熟虑"/>
+                <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">
+                    很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">朕已阅</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示模态框结束-->
+
+<!--新建通知开始-->
+<div class="modal fade" id="insertNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">新建一条通知</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td wdith="20%">通知内容:</td>
+                            <td width="80%"><input type="text" class="form-control" id="notice_content"
+                                                   maxlength="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">通知重要等级:</td>
+                            <td width="80%"><select name="notice_level" id="notice_level">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">接种疫苗日期:</td>
+                            <td width="80%"><input type="text" placeholder="可不填写或填写该日期格式:20210425" class="form-control"
+                                                   id="vaccine_date"
+                                                   maxlength="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">投入疫苗数量:</td>
+                            <td width="80%"><input type="text" placeholder="请填入数字" class="form-control"
+                                                   id="vaccine_count"
+                                                   maxlength="10"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="sub_notice">提交</button>
+                    <button type="button" class="btn btn-default" id="close_notice" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--新建通知结束-->
+
+<!--修改通知开始-->
+<div class="modal fade" id="updateNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改一条通知</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td wdith="20%">通知内容:</td>
+                            <td width="80%"><input type="text" class="form-control" id="notice_content_upd"
+                                                   maxlength="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">通知重要等级:</td>
+                            <td width="80%"><select name="notice_level" id="notice_level_upd">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">接种疫苗日期:</td>
+                            <td width="80%"><input type="text" placeholder="可不填写或填写该日期格式:20210425" class="form-control"
+                                                   id="vaccine_date_upd"
+                                                   maxlength="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">投入疫苗数量:</td>
+                            <td width="80%"><input type="text" placeholder="请填入数字，默认值为0" class="form-control"
+                                                   id="vaccine_count_upd"
+                                                   maxlength="10"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="alert_notice_upd">提示未修改内容</button>
+                    <button type="button" class="btn btn-primary" id="sub_notice_upd">提交</button>
+                    <button type="button" class="btn btn-default" id="close_notice_upd" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--修改通知结束-->
+
+<!--修改通知开始-->
+<div class="modal fade" id="updateUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">用户信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td wdith="20%">用户编号:</td>
+                            <td width="80%"><input type="text" class="form-control" id="user_id_upd"
+                                                   maxlength="10" readonly></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">用户姓名:</td>
+                            <td width="80%"><input type="text" class="form-control" id="user_name_upd"
+                                                   maxlength="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">用户密码:</td>
+                            <td width="80%"><input type="text" class="form-control" id="user_password_upd"
+                                                   maxlength="10"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="sub_user_upd">提交</button>
+                    <button type="button" class="btn btn-default" id="close_user_upd" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--修改通知结束-->
+
+<!--新建地址开始-->
+<div class="modal fade" id="insertLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">增加新地址</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td wdith="20%">地址名称</td>
+                            <td width="80%"><input type="text" class="form-control" id="location_name"
+                                                   maxlength="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">地址当前风险等级</td>
+                            <td width="80%"><select id="location_risklevel">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="sub_location">提交</button>
+                    <button type="button" class="btn btn-default" id="close_location" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--新建地址结束-->
+
+<!--修改地址开始-->
+<div class="modal fade" id="updateLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改地址</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td wdith="20%">地址:</td>
+                            <td width="80%"><input type="text" class="form-control" id="loc_name_upd"
+                                                   maxlength="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td wdith="20%">当前风险等级:</td>
+                            <td width="80%"><select name="notice_level" id="loc_risklevel_upd">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="alert_location_upd">提示未修改内容</button>
+                    <button type="button" class="btn btn-primary" id="sub_location_upd">提交</button>
+                    <button type="button" class="btn btn-default" id="close_location_upd" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--修改地址结束-->
+
+<script src="../../js/bootstrap.js"></script>
+<script src="../../js/admin-scripts.js"></script>
+
+<script src="../../js/echarts.min.js"></script>
+
+<!--echarts首页样式-->
+<script>
+    var chartDom = document.getElementById('chart_one');
+    var myChart = echarts.init(chartDom);
+    var option;
+    option = {
+        title: {
+            text: '辽科大防疫系统一览图'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['国家新增疫情人数', '昨日地址异常', '昨日体温异常']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '国家新增疫情人数',
+                type: 'line',
+                stack: '总量',
+                data: [0, 0, 0, 0, 0, 0, 0]
+            },
+            {
+                name: '昨日地址异常',
+                type: 'line',
+                stack: '总量',
+                data: [35, 46, 23, 11, 20, 23, 50]
+            },
+            {
+                name: '昨日体温异常',
+                type: 'line',
+                stack: '总量',
+                data: [51, 30, 9, 18, 5, 0, 0]
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+</script>
+
+<!-- All js for admin -->
+<script>
+    $(document).ready(function () {
+        //登陆状态201
+        if (sessionStorage.getItem("login_admin_msg") == "201") {
+
+            $("#oneMes").append(1);
+            //首先清空登录节点
+            $("#notLogin").detach();
+            $("#wechat_1").detach();
+
+            var htmlAddOne = "";
+            htmlAddOne = '<li class="dropdown" >' +
+                '<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' +
+                sessionStorage.getItem("admin_name") +
+                '<span class="caret"></span>' +
+                '</a>' +
+                '<ul class="dropdown-menu dropdown-menu-left">' +
+                '<li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>' +
+                '<li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>' +
+                '</ul>' +
+                '</li>';
+
+            var htmlAddTwo = "";
+            htmlAddTwo = '<li><a href="#" onClick="signOut()">退出登录</a></li>';
+
+            var htmlAddThree = '<li id="wechat"><a data-toggle="modal" data-target="#WeChat">帮助</a></li>';
+            $("#LoginStatus").append(htmlAddOne).append(htmlAddTwo).append(htmlAddThree);
+
+            $("#username").attr("value", sessionStorage.getItem("admin_name"));
+        }
+
+        /*打卡情况开始*/
+        //点击查看打卡记录
+        $("#SignInRecords").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+            $("ul#ul_1 li").attr('class', '');
+            $("ul#ul_2 li").attr('class', '');
+            $("ul#ul_3 li").attr('class', '');
+            //触发一次点击事件
+
+            $("ul#ul_2").children("li:eq(0)").attr('class', 'active');
+            $.ajax({
+                url: "/userinfo/selectAllSignInRecords",
+                type: "get",
+                success: function (result) {
+                    $("div#main").empty();
+                    $('div#main').append('<h1 class="page-header">用户打卡记录</h1>');
+                    if (result.code == 200) {
+                        var htmlAddOne = '';
+                        htmlAddOne = '<table class="table" id="AllRecordTable">\n' +
+                            '                <tr>\n' +
+                            '                    <th>用户编号</th>\n' +
+                            '                    <th>姓名</th>\n' +
+                            '                    <th>温度</th>\n' +
+                            '                    <th>身体状况</th>\n' +
+                            '                    <th>接触情况</th>\n' +
+                            '                    <th>地址</th>\n' +
+                            '                    <th>提交时间</th>\n' +
+                            '                </tr>\n' +
+                            '            </table>\n' +
+                            '        </section>';
+                        $("div#main").append(htmlAddOne);
+                        $.each(result.extend.userInfos, function (index, item) {
+                            var user_idTd = $("<td></td>").append(item.user_id);
+                            var user_nameTd = $("<td></td>").append(item.user_name);
+                            var user_temperatureTd = $("<td></td>").append(item.user_temperature);
+                            var physical_conditionTd = $("<td></td>").append(item.physical_condition);
+                            var contact_conditionTd = $("<td></td>").append(item.contact_condition);
+                            var user_locTd = $("<td></td>").append(item.user_loc);
+                            var operate_timeTd = $("<td></td>").append(item.operate_time);
+                            $("<tr></tr>")
+                                .append(user_idTd)
+                                .append(user_nameTd)
+                                .append(user_temperatureTd)
+                                .append(physical_conditionTd)
+                                .append(contact_conditionTd)
+                                .append(user_locTd)
+                                .append(operate_timeTd)
+                                .appendTo("#AllRecordTable tbody");
+                        });
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                            ' </ul>';
+                        $("div#main").append(page);
+                    } else {
+                        $("div#main").append("目前暂无打卡记录！");
+                    }
+                }, error: function (result) {
+                    alert("请先登录");
+                }
+            });
+        });
+
+        //点击未打卡人员提醒
+        $("#NotCheckIn").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_2").children("li:eq(0)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/admin/selectNotCheckIn",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">暂未打卡人员</h1>');
+                        htmladd_0 = '<table class="table" id="NotCheckIn_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>编号</th>\n' +
+                            '                <th>姓名</th>\n' +
+                            '                <th>工作类型</th>\n' +
+                            '                <th>打卡状态</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.userList, function (index, item) {
+                            var user_idTd = $("<td></td>").append(item.user_id);
+                            var user_nameTd = $("<td></td>").append(item.user_name);
+                            var user_typeTd = $("<td></td>").append(item.user_type);
+                            var user_checkinTd = $("<td></td>").append("未打卡");
+                            $("<tr bgcolor='#fff3c5'></tr>")
+                                .append(user_idTd)
+                                .append(user_nameTd)
+                                .append(user_typeTd)
+                                .append(user_checkinTd)
+                                .appendTo("#NotCheckIn_table tbody");
+                        });
+
+                        //一键提醒按钮：点击此按钮将js状态码设值，如若前端既满足此状态码，又有user_checkin=0,则进行alert
+                        $('<button class="btn btn-primary" onclick="remind_btn()"></button>')
+                            .append("一键提醒打卡")
+                            .appendTo("#main");
+                    }
+                    if (result.code == 100)
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>暂无未打卡人员！</strong>\n' +
+                            '</div>');
+                }, error: function () {
+                    alert("请先登录!");
+                    window.location.href = '/admin/toIndex_admin';
+                }
+            });
+        });
+        /*打卡情况结束*/
+
+        /*异常信息查看开始*/
+        //点击体温异常人员后进行ajax异步操作
+        $("#tem_abnormal").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_2").children("li:eq(1)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/admin/selectAllAbnormal",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">体温异常人员</h1>');
+                        htmladd_0 = '<table class="table" id="temChange_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>学生编号</th>\n' +
+                            '                <th>姓名</th>\n' +
+                            '                <th>提交时间</th>\n' +
+                            '                <th>异常报告</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.abnormals, function (index, item) {
+                            var abnormal_idTd = $("<td></td>").append(item.abnormal_id);
+                            var abnormal_nameTd = $("<td></td>").append(item.abnormal_name);
+                            var abnormal_timeTd = $("<td></td>").append(item.abnormal_time);
+                            var abnormal_commentTd = $("<td></td>").append(item.abnormal_comment);
+                            $("<tr bgcolor='#fff3c5'></tr>")
+                                .append(abnormal_idTd)
+                                .append(abnormal_nameTd)
+                                .append(abnormal_timeTd)
+                                .append(abnormal_commentTd)
+                                .appendTo("#temChange_table tbody");
+                        });
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                            ' </ul>';
+                        $("div#main").append(page);
+                    }
+                    if (result.code == 100)
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无体温异常人员！</strong>\n' +
+                            '</div>');
+                }, error: function () {
+                    alert("请先登录");
+                }
+            });
+        });
+
+        //点击地址发生变化人员后进行ajax异步操作
+        $("#loc_change").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_2").children("li:eq(1)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+
+            $.ajax({
+                url: "/admin/selectAllArsChange",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">地址异常人员</h1>');
+                        htmladd_0 = '<table class="table" id="arsChange_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>学生编号</th>\n' +
+                            '                <th>姓名</th>\n' +
+                            '                <th>提交时间</th>\n' +
+                            '                <th>打卡地址</th>\n' +
+                            '                <th>该地区风险等级</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.addressChanges, function (index, item) {
+                            var change_useridTd = $("<td></td>").append(item.change_userid);
+                            var change_usernameTd = $("<td></td>").append(item.change_username);
+                            var change_timeTd = $("<td></td>").append(item.change_time);
+                            var changeto_locTd = $("<td></td>").append(item.changeto_loc);
+                            var loc_risklevelTd = $("<td></td>").append(item.loc_risklevel);
+                            if (parseInt(item.loc_risklevel) == 0) {
+                                $("<tr bgcolor='#baffaa'></tr>")
+                                    .append(change_useridTd)
+                                    .append(change_usernameTd)
+                                    .append(change_timeTd)
+                                    .append(changeto_locTd)
+                                    .append(loc_risklevelTd)
+                                    .appendTo("#arsChange_table tbody");
+                            }
+                            if (parseInt(item.loc_risklevel) == 1) {
+                                $("<tr bgcolor='#fff3c5'></tr>")
+                                    .append(change_useridTd)
+                                    .append(change_usernameTd)
+                                    .append(change_timeTd)
+                                    .append(changeto_locTd)
+                                    .append(loc_risklevelTd)
+                                    .appendTo("#arsChange_table tbody");
+                            }
+                            if (parseInt(item.loc_risklevel) == 2 || parseInt(item.loc_risklevel) == 3) {
+                                $("<tr bgcolor='#ffb5ab'></tr>")
+                                    .append(change_useridTd)
+                                    .append(change_usernameTd)
+                                    .append(change_timeTd)
+                                    .append(changeto_locTd)
+                                    .append(loc_risklevelTd)
+                                    .appendTo("#arsChange_table tbody");
+                            }
+                        });
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                            ' </ul>';
+                        $("div#main").append(page);
+                    }
+                    if (result.code == 100)
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无地址异常人员！</strong>\n' +
+                            '</div>');
+                }, error: function () {
+                    alert("error");
+                }
+            });
+        });
+        /*异常信息查看结束*/
+
+
+        /*通知开始*/
+        //新建一条通知
+        $("#sub_notice").click(function () {
+
+            /*alert($('#notice_content').val());
+            alert($('#notice_level option:selected').val());
+            alert($('#vaccine_date').val());
+            alert($('#vaccine_count').val());*/
+
+            if ($('#vaccine_date').val() == '')
+                $('#vaccine_date').val('无');
+            if ($('#vaccine_count').val() == '') {
+                $('#vaccine_count').val('0');
+            }
+
+            $.ajax({
+                url: "/notice/insertNotice",
+                type: "get",
+                data: {
+                    "notice_content": $('#notice_content').val(),
+                    "notice_level": $('#notice_level option:selected').val(),
+                    "vaccine_date": $('#vaccine_date').val(),
+                    "vaccine_count": $('#vaccine_count').val()
+                },
+                success: function (result) {
+                    alert('新建成功，点击返回');
+                    $("#close_notice").click();
+                    $('#notice_content').val('');
+                    $('#vaccine_date').val('');
+                    $('#vaccine_count').val('');
+                    $("#noticeManage").click();
+                }, error: function (result) {
+                    alert('请输入正确的日期格式和数字！');
+                    $('#notice_content').val('');
+                    $('#vaccine_date').val('');
+                    $('#vaccine_count').val('');
+                }
+            });
+        });
+
+        //点击通知管理后进行ajax异步操作
+        $("#noticeManage").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_2").children("li:eq(2)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+
+            $.ajax({
+                url: "/notice/selectAllNotice",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">通知管理</h1>');
+                        htmladd_0 = '<table class="table" id="noticeManage_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>通知编号</th>\n' +
+                            '                <th>通知内容梗概</th>\n' +
+                            '                <th>通知重要等级</th>\n' +
+                            '                <th>疫苗注射日期</th>\n' +
+                            '                <th>疫苗投入数量</th>\n' +
+                            '                <th>操作</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.noticeList, function (index, item) {
+                            var notice_idTd = $("<td></td>").append(item.notice_id);
+                            var notice_contentTd = $("<td></td>").append(item.notice_content);
+                            var notice_levelTd = $("<td></td>").append(item.notice_level);
+                            var vaccine_dateTd = $("<td></td>").append(item.vaccine_date);
+                            var vaccine_countTd = $("<td></td>").append(item.vaccine_count);
+                            //修改按钮
+                            var editBtn = $("<button></button>")
+                                .append("<span class='glyphicon glyphicon-pencil'></span>")
+                                .addClass("btn btn-primary edit_notice")
+                            //添加id属性
+                            editBtn.attr("edit_id", item.notice_id);
+                            //添加name属性
+                            editBtn.attr("edit_notice_content", item.notice_content);
+                            //添加数量属性
+                            editBtn.attr("edit_vaccine_count", item.vaccine_count);
+                            //删除按钮
+                            var delBtn = $("<button></button>").append("<span class='glyphicon glyphicon-trash'></span>").addClass("btn btn-danger del_notice");
+                            delBtn.attr("del_id", item.notice_id);//添加属性
+
+
+                            var opTd = $("<td></td>").append(editBtn).append(delBtn);
+                            if (parseInt(item.notice_level) == 1) {
+                                $("<tr bgcolor='#baffaa'></tr>")
+                                    .append(notice_idTd)
+                                    .append(notice_contentTd)
+                                    .append(notice_levelTd)
+                                    .append(vaccine_dateTd)
+                                    .append(vaccine_countTd)
+                                    .append(opTd)
+                                    .appendTo("#noticeManage_table tbody");
+                            }
+                            if (parseInt(item.notice_level) == 2) {
+                                $("<tr bgcolor='#fff3c5'></tr>")
+                                    .append(notice_idTd)
+                                    .append(notice_contentTd)
+                                    .append(notice_levelTd)
+                                    .append(vaccine_dateTd)
+                                    .append(vaccine_countTd)
+                                    .append(opTd)
+                                    .appendTo("#noticeManage_table tbody");
+                            }
+                            if (parseInt(item.notice_level) == 3) {
+                                $("<tr bgcolor='#ffb5ab'></tr>")
+                                    .append(notice_idTd)
+                                    .append(notice_contentTd)
+                                    .append(notice_levelTd)
+                                    .append(vaccine_dateTd)
+                                    .append(vaccine_countTd)
+                                    .append(opTd)
+                                    .appendTo("#noticeManage_table tbody");
+                            }
+                        });
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                            ' </ul>';
+                        $("div#main").append(page);
+
+                    }
+                    if (result.code == 100)
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无新建通知</strong>\n' +
+                            '</div>');
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+
+        /*修改通知开始*/
+        //此提示只可作为一个样板，而不是当前所修改的行数据
+        $("#alert_notice_upd").click(function () {
+            //将内容置于修改框
+            $("#notice_content_upd").prop("value", sessionStorage.getItem("edit_notice_content"));
+            //将数量置于修改框
+            $("#vaccine_count_upd").prop("value", sessionStorage.getItem("edit_vaccine_count"));
+        });
+        //点击提交
+        $("#sub_notice_upd").click(function () {
+            if ($('#vaccine_date_upd').val() == '')
+                $('#vaccine_date_upd').val('无');
+            if ($('#vaccine_count_upd').val() == '') {
+                $('#vaccine_count_upd').val('0');
+            }
+            $.ajax({
+                url: "/notice/updateNoticeById",
+                type: "get",
+                data: {
+                    "notice_id": sessionStorage.getItem("notice_id"),
+                    "notice_content": $('#notice_content_upd').val(),
+                    "notice_level": $('#notice_level_upd option:selected').val(),
+                    "vaccine_date": $('#vaccine_date_upd').val(),
+                    "vaccine_count": $('#vaccine_count_upd').val()
+                },
+                success: function (result) {
+                    alert('修改成功，点击返回');
+                    $('#notice_content_upd').val('');
+                    $('#vaccine_date_upd').val('');
+                    $('#vaccine_count_upd').val('');
+                    $("#close_notice_upd").click();
+                    $("#noticeManage").click();
+                }, error: function (result) {
+                    alert('请输入正确的日期格式和数字！');
+                    $('#notice_content_upd').val('');
+                    $('#vaccine_date_upd').val('');
+                    $('#vaccine_count_upd').val('');
+                }
+            });
+        });
+        //点击关闭时清空输入框
+        $("#close_notice_upd").click(function () {
+            $('#notice_content_upd').val('');
+            $('#vaccine_date_upd').val('');
+            $('#vaccine_count_upd').val('');
+        });
+        /*修改通知结束*/
+
+        //查看预约情况
+        $("#orderCondition").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_2").children("li:eq(2)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/appoint/selectAllAppoint",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">预约情况&nbsp;&nbsp;&nbsp;<a class="btn btn-success" href="#" onclick="downloadAppoint()">下载预约信息</a></h1>');
+                        htmladd_0 = '<table class="table" id="AppointManage_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>预约编号</th>\n' +
+                            '                <th>预约用户账号</th>\n' +
+                            '                <th>用户名</th>\n' +
+                            '                <th>手机号</th>\n' +
+                            '                <th>预约项目</th>\n' +
+                            '                <th>预约时间</th>\n' +
+                            '                <th>预约状态</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.appointList, function (index, item) {
+                            var appoint_idTd = $("<td></td>").append(item.appoint_id);
+                            var appoint_useridTd = $("<td></td>").append(item.appoint_userid);
+                            var appoint_usernameTd = $("<td></td>").append(item.appoint_username);
+                            var appoint_phonenumTd = $("<td></td>").append(item.appoint_phonenum);
+                            var appoint_projectTd = $("<td></td>").append(item.appoint_project);
+                            var appoint_timeTd = $("<td></td>").append(item.appoint_time);
+                            var appoint_statusTd = $("<td></td>").append(item.appoint_status);
+
+                            $("<tr></tr>")
+                                .append(appoint_idTd)
+                                .append(appoint_useridTd)
+                                .append(appoint_usernameTd)
+                                .append(appoint_phonenumTd)
+                                .append(appoint_projectTd)
+                                .append(appoint_timeTd)
+                                .append(appoint_statusTd)
+                                .appendTo("#AppointManage_table tbody");
+                        });
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                            ' </ul>';
+                        $("div#main").append(page);
+                    } else if (result.code == 100) {
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无任何人预约项目</strong>\n' +
+                            '</div>');
+                    }
+                }, error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+        /*通知结束*/
+
+
+        /*信息收集开始*/
+        //发布收集项目
+        $("#insertCollect").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_2").children("li:eq(3)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/collect/selectPreCollect",
+                type: "get",
+                success: function (result) {
+                    $('div#main').empty();
+                    $('div#main').append('<h1 class="page-header">发布收集</h1>');
+                    if (result.code == 200) {
+                        var html_id = '<h4>第<strong> ' + (result.extend["collect"].id + 1) + ' </strong>次收集</h4>';
+                        window.localStorage.setItem("collect_id", (result.extend["collect"].id + 1));
+                    }
+                    if (result.code == 100) {
+                        var html_id = '<h4>第 <strong>1</strong> 次收集</h4>';
+                        window.localStorage.setItem("collect_id", 1);
+
+                    }
+                    $("div#main").append(html_id);
+                    var html_other = '<div class="table-responsive">\n' +
+                        '    <table class="table table-striped table-hover">\n' +
+                        '        <thead>\n' +
+                        '        <tr>\n' +
+                        '            <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span></th>\n' +
+                        '            <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>\n' +
+                        '        </tr>\n' +
+                        '        </thead>\n' +
+                        '        <tbody>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_name"/></td>\n' +
+                        '            <td class="article-title">姓名</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_sex"/></td>\n' +
+                        '            <td class="article-title">性别</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_grade"/></td>\n' +
+                        '            <td class="article-title">班级</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_idCard"/></td>\n' +
+                        '            <td class="article-title">身份证号码</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_phoneNum"/></td>\n' +
+                        '            <td class="article-title">手机号码</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_parsNum"/></td>\n' +
+                        '            <td class="article-title">父或母电话号码</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_dormitory"/></td>\n' +
+                        '            <td class="article-title">宿舍号</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_loc"/></td>\n' +
+                        '            <td class="article-title">家庭地址</td>\n' +
+                        '        </tr>\n' +
+                        '        <tr>\n' +
+                        '            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" id="check_travel"/></td>\n' +
+                        '            <td class="article-title">两周内旅行史</td>\n' +
+                        '        </tr>\n' +
+                        '        </tbody>\n' +
+                        '    </table>\n' +
+                        '</div>\n' +
+                        '<footer class="message_footer">\n' +
+                        '          <nav>\n' +
+                        '            <div class="btn-toolbar operation" role="toolbar">\n' +
+                        '              <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>\n' +
+                        '<div class="btn-group" role="group"><a class="btn btn-primary" onClick="submit_collect()">提交</a></div>' +
+                        '          </nav>\n' +
+                        '        </footer>';
+
+
+                    $("div#main").append(html_other);
+                }, error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+
+        //查看收集项目:分页
+        $("#selectCollect").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_2").children("li:eq(3)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/collect/selectAllCollect",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">查看收集项目&nbsp;&nbsp;&nbsp;' +
+                            '<a class="btn btn-success" href="#" onclick="downloadAllCollect()">下载全部收集项目</a>&nbsp;&nbsp;&nbsp;' +
+                            '<a class="btn btn-success" href="#" onclick="downloadPreCollect()">下载上一次收集项目</a></h1>');
+                        htmladd_0 = '<table class="table" id="collect_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>编号项目</th>\n' +
+                            '                <th>姓名</th>\n' +
+                            '                <th>性别</th>\n' +
+                            '                <th>班级</th>\n' +
+                            '                <th>身份证号码</th>\n' +
+                            '                <th>手机号</th>\n' +
+                            '                <th>父母手机号</th>\n' +
+                            '                <th>宿舍号</th>\n' +
+                            '                <th>家庭住址</th>\n' +
+                            '                <th>旅行史</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.collectPageInfo.list, function (index, item) {
+                            var idTd = $("<td></td>").append(item.id);
+                            var nameTd = $("<td></td>").append(item.name);
+                            var sexTd = $("<td></td>").append(item.sex);
+                            var class_gradeTd = $("<td></td>").append(item.class_grade);
+                            var idcard_numberTd = $("<td></td>").append(item.idcard_number);
+                            var phone_numberTd = $("<td></td>").append(item.phone_number);
+                            var parent_phone_numberTd = $("<td></td>").append(item.parent_phone_number);
+                            var dormitoryTd = $("<td></td>").append(item.dormitory);
+                            var home_locTd = $("<td></td>").append(item.home_loc);
+                            var traveling_locTd = $("<td></td>").append(item.traveling_loc);
+                            $("<tr></tr>")
+                                .append(idTd)
+                                .append(nameTd)
+                                .append(sexTd)
+                                .append(class_gradeTd)
+                                .append(idcard_numberTd)
+                                .append(phone_numberTd)
+                                .append(parent_phone_numberTd)
+                                .append(dormitoryTd)
+                                .append(home_locTd)
+                                .append(traveling_locTd)
+                                .appendTo("#collect_table tbody");
+                        });
+                        var collectPageInfo = result.extend["collectPageInfo"];
+
+                        if (collectPageInfo.pages == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + collectPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + collectPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (collectPageInfo.pageNum == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + collectPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + collectPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (collectPageInfo.pageNum == locationPageInfo.pages) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + collectPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + collectPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + collectPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + collectPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        }
+                    } else if (result.code == 100) {
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无收集项目</strong>\n' +
+                            '</div>');
+                    }
+                    $("div#main").append(page);
+                }, error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+        /*信息收集结束*/
+
+
+        /*人员信息管理开始*/
+
+        //用户管理
+        $("#user_manage").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_3").children("li:eq(0)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/user/adminselectAllUser",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">用户管理</h1>');
+                        htmladd_0 = '<table class="table" id="user_manage_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>用户编号</th>\n' +
+                            '                <th>用户姓名</th>\n' +
+                            '                <th>密码</th>\n' +
+                            '                <th>用户类型</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.userPageInfo.list, function (index, item) {
+                            var user_idTd = $("<td></td>").append(item.user_id);
+                            var user_nameTd = $("<td></td>").append(item.user_name);
+                            var user_passwordTd = $("<td></td>").append(item.user_password);
+                            var user_typeTd = $("<td></td>").append(item.user_type);
+                            //修改按钮
+                            var editUserBtn = $("<button></button>")
+                                .append("<span class='glyphicon glyphicon-pencil'></span>")
+                                .addClass("btn btn-primary edit_user");
+                            //id
+                            editUserBtn.attr("edit_user_id", item.user_id);
+                            //添加name属性
+                            editUserBtn.attr("edit_user_name", item.user_name);
+                            //添加数量属性
+                            editUserBtn.attr("edit_user_password", item.user_password);
+                            /*//删除按钮
+                            var delUserBtn = $("<button ></button>").append("<span class='glyphicon glyphicon-trash'></span>")
+                                .addClass("btn btn-danger del_user");
+                            delUserBtn.attr("del_user_id", item.user_id);//添加属性*/
+
+                            var opTd = $("<td></td>").append(editUserBtn);
+                            $("<tr></tr>")
+                                .append(user_idTd)
+                                .append(user_nameTd)
+                                .append(user_passwordTd)
+                                .append(user_typeTd)
+                                .append(opTd)
+                                .appendTo("#user_manage_table tbody");
+                        });
+                        //分页
+                        var userPageInfo = result.extend["userPageInfo"];
+                        if (userPageInfo.pages == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" >下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" >尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (userPageInfo.pageNum == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (userPageInfo.pageNum == userPageInfo.pages) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        }
+                        $("div#main").append(page);
+                    } else if (result.code == 100) {
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无用户信息</strong>\n' +
+                            '</div>');
+                    }
+                },
+                error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+
+        //点击提交
+        $("#sub_user_upd").click(function () {
+            if ($('#user_name_upd').val() == '')
+                $('#user_name_upd').focus();
+            if ($('#user_password_upd').val() == '')
+                $('#user_password_upd').focus();
+
+            $.ajax({
+                url: "/user/updateNameOrPassById",
+                type: "get",
+                data: {
+                    "user_id": $('#user_id_upd').val(),
+                    "user_name": $('#user_name_upd').val(),
+                    "user_password": $('#user_password_upd').val(),
+                },
+                success: function (result) {
+                    alert('修改成功，点击返回');
+                    $('#user_id_upd').val('');
+                    $('#user_name_upd').val('');
+                    $('#user_password_upd').val('');
+                    $("#close_user_upd").click();
+                    $("#user_manage").click();
+                }, error: function (result) {
+                    alert('请正确输入！');
+                    $('#user_id_upd').val('');
+                    $('#user_name_upd').val('');
+                    $('#user_password_upd').val('');
+                }
+            });
+        });
+
+        //点击关闭时清空输入框
+        $("#close_user_upd").click(function () {
+            $('#user_id_upd').val('');
+            $('#user_name_upd').val('');
+            $('#user_password_upd').val('');
+        });
+
+        //访客信息管理
+        $("#visitor_manage").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_3").children("li:eq(0)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/visitor/selectAllVisitor",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">访客管理</h1>');
+                        htmladd_0 = '<table class="table" id="visitor_manage_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>访客编号</th>\n' +
+                            '                <th>姓名</th>\n' +
+                            '                <th>性别</th>\n' +
+                            '                <th>体温</th>\n' +
+                            '                <th>电话号码</th>\n' +
+                            '                <th>车牌号</th>\n' +
+                            '                <th>访问时间</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.visitorPageInfo.list, function (index, item) {
+                            var visitor_idTd = $("<td></td>").append(item.visitor_id);
+                            var visitor_nameTd = $("<td></td>").append(item.visitor_name);
+                            var visitor_sexTd = $("<td></td>").append(item.visitor_sex);
+                            var visitor_temperatureTd = $("<td></td>").append(item.visitor_temperature);
+                            var visitor_phone_numTd = $("<td></td>").append(item.visitor_phone_num);
+                            var visitor_car_numTd = $("<td></td>").append(item.visitor_car_num);
+                            var visitor_timeTd = $("<td></td>").append(item.visitor_time);
+
+                            //删除按钮
+                            var delVisitorBtn = $("<button ></button>").append("<span class='glyphicon glyphicon-trash'></span>")
+                                .addClass("btn btn-danger del_visitor");
+                            delVisitorBtn.attr("del_visitor_id", item.visitor_id);//添加属性
+
+                            var opTd = $("<td></td>").append(delVisitorBtn);
+                            $("<tr></tr>")
+                                .append(visitor_idTd)
+                                .append(visitor_nameTd)
+                                .append(visitor_sexTd)
+                                .append(visitor_temperatureTd)
+                                .append(visitor_phone_numTd)
+                                .append(visitor_car_numTd)
+                                .append(visitor_timeTd)
+                                .append(opTd)
+                                .appendTo("#visitor_manage_table tbody");
+                        });
+                        //分页
+                        var visitorPageInfo = result.extend["visitorPageInfo"];
+                        if (visitorPageInfo.pages == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + visitorPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + visitorPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" >下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" >尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (visitorPageInfo.pageNum == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + visitorPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + visitorPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + visitorPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + visitorPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (visitorPageInfo.pageNum == visitorPageInfo.pages) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + visitorPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + visitorPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + visitorPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + visitorPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + visitorPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + visitorPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + visitorPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + visitorPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectVisitorPage(' + visitorPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        }
+                        $("div#main").append(page);
+                    } else if (result.code == 100) {
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无访客信息</strong>\n' +
+                            '</div>');
+                    }
+                },
+                error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+
+        //防疫员申请管理
+        $("#applyForEpc_manage").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_3").children("li:eq(0)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/user/selectUserApply",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">防疫员申请管理</h1>');
+                        htmladd_0 = '<table class="table" id="applyForEpc_manage_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>学生编号</th>\n' +
+                            '                <th>学生姓名</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.userList, function (index, item) {
+                            var user_idTd = $("<td></td>").append(item.user_id);
+                            var user_nameTd = $("<td></td>").append(item.user_name);
+                            //同意
+                            var agreeBtn = $("<button></button>").append("<span>同意</span>").addClass("btn btn-success agree");
+                            agreeBtn.attr("agree_id", item.user_id);//添加属性
+
+                            //不同意
+                            var disagreeBtn = $("<button></button>").append("<span>不同意</span>").addClass("btn btn-danger disagree");
+                            disagreeBtn.attr("disagree_id", item.user_id);//添加属性
+
+
+                            var opTd = $("<td></td>").append(agreeBtn).append(disagreeBtn);
+                            $("<tr></tr>")
+                                .append(user_idTd)
+                                .append(user_nameTd)
+                                .append(opTd)
+                                .appendTo("#applyForEpc_manage_table tbody");
+                        });
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                            ' </ul>';
+                        $("div#main").append(page);
+                    } else if (result.code == 100) {
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无申请消息</strong>\n' +
+                            '</div>');
+                    }
+                },
+                error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+
+        /*人员信息管理结束*/
+
+
+        /*留言开始*/
+        $("#otherMenu_3").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_3").children("li:eq(1)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+            $.ajax({
+                url: "/message/selectAllMessage",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">留言管理</h1>');
+                        htmladd_0 = '<table class="table" id="MessageManage_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>留言编号</th>\n' +
+                            '                <th>留言内容</th>\n' +
+                            '                <th>用户名</th>\n' +
+                            '                <th>用户类型</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.messageList, function (index, item) {
+                            var message_idTd = $("<td></td>").append(item.message_id);
+                            var message_contentTd = $("<td></td>").append(item.message_content);
+                            var user_nameTd = $("<td></td>").append(item.user_name);
+                            var user_typeTd = $("<td></td>").append(item.user_type);
+                            //删除按钮
+                            var delMesBtn = $("<button></button>").append("<span class='glyphicon glyphicon-trash'></span>").addClass("btn btn-danger del_message");
+                            delMesBtn.attr("del_message_id", item.message_id);//添加属性
+
+
+                            var opTd = $("<td></td>").append(delMesBtn);
+                            $("<tr></tr>")
+                                .append(message_idTd)
+                                .append(message_contentTd)
+                                .append(user_nameTd)
+                                .append(user_typeTd)
+                                .append(opTd)
+                                .appendTo("#MessageManage_table tbody");
+
+                        });
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共1页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link">尾页</a></li>\n' +
+                            ' </ul>';
+                        $("div#main").append(page);
+
+                    }
+                    if (result.code == 100) {
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无新消息</strong>\n' +
+                            '</div>');
+                    }
+                }, error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+
+        /*留言结束*/
+
+        /*地址管理开始*/
+        //新增地址
+        $("#sub_location").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+
+            if ($("#location_name").val() == '') {
+                $("#location_name").focus();
+            }
+            $.ajax({
+                url: "/admin/insertNewLocation",
+                type: "get",
+                data: {
+                    "loc_name": $("#location_name").val(),
+                    "loc_risklevel": $("#location_risklevel option:selected").val()
+                },
+                success: function (result) {
+                    alert('新增地址成功，点击返回');
+                    $("#close_location").click();
+                    $('#location_name').val('');
+                    //模拟点击一次修改地址信息
+                    $("#updateLocationInfo").click();
+                },
+                error: function (result) {
+                    alert("error!");
+                    $("#close_location").click();
+                    $('#location_name').val('');
+                }
+            });
+        });
+
+        //修改地址信息
+        $("#updateLocationInfo").click(function () {
+            //点击每一个项目时的未登录拦截
+            if (sessionStorage.getItem("login_admin_msg") == 202 || sessionStorage.getItem("admin_name") == null) {
+                alert("请先登录！");
+                window.location.href = "/admin/toIndex_admin";
+            }
+            //取消左侧所有li的active,增加点击地方的active
+            $("ul#ul_1 li").attr("class", "");
+            $("ul#ul_2 li").attr("class", "");
+            $("ul#ul_3 li").attr("class", "");
+            $("ul#ul_3").children("li:eq(2)").attr('class', 'active');
+            //清空主页的中心内容
+            $("div#main").empty();
+
+            $.ajax({
+                url: "/admin/selectAllLocation",
+                type: "get",
+                success: function (result) {
+                    if (result.code == 200) {
+                        var htmladd_0 = '';
+                        $('div#main').empty();
+                        $('div#main').append('<h1 class="page-header">修改地址信息</h1>');
+                        htmladd_0 = '<table class="table" id="updateLocation_table">\n' +
+                            '            <tr>\n' +
+                            '                <th>城市编号</th>\n' +
+                            '                <th>名称</th>\n' +
+                            '                <th>风险等级</th>\n' +
+                            '            </tr>\n' +
+                            '        </table>';
+                        $("div#main").append(htmladd_0);
+                        $.each(result.extend.locationPageInfo.list, function (index, item) {
+                            var loc_idTd = $("<td></td>").append(item.loc_id);
+                            var loc_nameTd = $("<td></td>").append(item.loc_name);
+                            var loc_risklevelTd = $("<td></td>").append(item.loc_risklevel);
+                            //修改按钮
+                            var editLocBtn = $("<button></button>")
+                                .append("<span class='glyphicon glyphicon-pencil'></span>")
+                                .addClass("btn btn-primary edit_location");
+                            //添加id属性
+                            editLocBtn.attr("edit_loc_id", item.loc_id);
+                            //添加name属性
+                            editLocBtn.attr("edit_loc_name", item.loc_name);
+                            //添加数量属性
+                            editLocBtn.attr("edit_loc_risklevel", item.loc_risklevel);
+                            //删除按钮
+                            var delLocBtn = $("<button ></button>").append("<span class='glyphicon glyphicon-trash'></span>")
+                                .addClass("btn btn-danger del_location");
+                            delLocBtn.attr("del_loc_id", item.loc_id);//添加属性
+
+
+                            var opTd = $("<td></td>").append(editLocBtn).append(delLocBtn);
+                            if (parseInt(item.loc_risklevel) == 0) {
+                                $("<tr bgcolor='#baffaa'></tr>")
+                                    .append(loc_idTd)
+                                    .append(loc_nameTd)
+                                    .append(loc_risklevelTd)
+                                    .append(opTd)
+                                    .appendTo("#updateLocation_table tbody");
+                            }
+                            if (parseInt(item.loc_risklevel) == 1) {
+                                $("<tr bgcolor='#fff3c5'></tr>")
+                                    .append(loc_idTd)
+                                    .append(loc_nameTd)
+                                    .append(loc_risklevelTd)
+                                    .append(opTd)
+                                    .appendTo("#updateLocation_table tbody");
+                            }
+                            if (parseInt(item.loc_risklevel) == 2 || parseInt(item.loc_risklevel) == 3) {
+                                $("<tr bgcolor='#ffb5ab'></tr>")
+                                    .append(loc_idTd)
+                                    .append(loc_nameTd)
+                                    .append(loc_risklevelTd)
+                                    .append(opTd)
+                                    .appendTo("#updateLocation_table tbody");
+                            }
+                        });
+                        var locationPageInfo = result.extend["locationPageInfo"];
+
+                        if (locationPageInfo.pages == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + locationPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + locationPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" >下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" >尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (locationPageInfo.pageNum == 1) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + locationPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + locationPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else if (locationPageInfo.pageNum == locationPageInfo.pages) {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + locationPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + locationPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        } else {
+                            var page = '<ul class="pagination">\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + 1 + ')">首页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.prePage + ')">上一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>第' + locationPageInfo.pageNum + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link"><span>共' + locationPageInfo.pages + '页</span></a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.nextPage + ')">下一页</a></li>\n' +
+                                '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.pages + ')">尾页</a></li>\n' +
+                                ' </ul>';
+                        }
+                        $("div#main").append(page);
+                    } else if (result.code == 100) {
+                        $("div#main").append('<div class="alert alert-success">\n' +
+                            ' <strong>无城市信息</strong>\n' +
+                            '</div>');
+                    }
+                }, error: function (result) {
+                    alert("error!");
+                }
+            });
+        });
+
+        /*修改地址开始*/
+        $("#alert_location_upd").click(function () {
+            //将名称置于修改框
+            $("#loc_name_upd").prop("value", sessionStorage.getItem("edit_loc_name"));
+        });
+
+        //点击提交
+        $("#sub_location_upd").click(function () {
+            if ($('#loc_name_upd').val() == '')
+                $('#loc_name_upd').val('无');
+
+            $.ajax({
+                url: "/admin/updateLocationById",
+                type: "get",
+                data: {
+                    "loc_id": sessionStorage.getItem("loc_id"),
+                    "loc_name": $('#loc_name_upd').val(),
+                    "loc_risklevel": $('#loc_risklevel_upd option:selected').val(),
+                },
+                success: function (result) {
+                    alert('修改成功，点击返回');
+                    $('#loc_name_upd').val('');
+                    $("#close_location_upd").click();
+                    $("#updateLocationInfo").click();
+                }, error: function (result) {
+                    alert('请正确输入！');
+                    $('#loc_name_upd').val('');
+                }
+            });
+        });
+        //点击关闭时清空输入框
+        $("#close_location_upd").click(function () {
+            $('#loc_name_upd').val('');
+        });
+        /*修改通知结束*/
+
+        /*地址管理结束*/
+
+    })
+    ;
+
+    //管理通知中修改员工信息
+    $(document).on("click", ".edit_notice", function () {
+        var notice_id = $(this).attr("edit_id");
+        window.sessionStorage.setItem("notice_id", notice_id);
+
+        window.sessionStorage.setItem("edit_notice_content", $(this).attr("edit_notice_content"));
+        window.sessionStorage.setItem("edit_vaccine_count", $(this).attr("edit_vaccine_count"));
+        //弹出模态层
+        $("#updateNotice").modal({
+            backdrop: "static"
+        });
+    });
+
+
+    //管理通知中删除键
+    $(document).on("click", ".del_notice", function () {
+        var notice_id = $(this).attr("del_id");
+        if (confirm("是否删除？")) {
+            $.ajax({
+                url: "/notice/delNoticeById",
+                type: "get",
+                data: {"notice_id": notice_id},
+                success: function (result) {
+                    $("#noticeManage").click();
+                }, error: function (result) {
+                    alert("error");
+                }
+            });
+        }
+    });
+
+    //修改地址中修改地址信息
+    $(document).on("click", ".edit_location", function () {
+        var loc_id = $(this).attr("edit_loc_id");
+        window.sessionStorage.setItem("loc_id", loc_id);
+        window.sessionStorage.setItem("edit_loc_name", $(this).attr("edit_loc_name"));
+        //弹出模态层
+        $("#updateLocation").modal({
+            backdrop: "static"
+        });
+
+    });
+
+    //修改地址中的删除键
+    $(document).on("click", ".del_location", function () {
+        var loc_id = $(this).attr("del_loc_id");
+        if (confirm("是否删除？")) {
+            $.ajax({
+                url: "/admin/delLocationById",
+                type: "get",
+                data: {"loc_id": loc_id},
+                success: function (result) {
+                    $("#updateLocationInfo").click();
+                }, error: function (result) {
+                    alert("error");
+                }
+            });
+        }
+    });
+
+    //删除留言
+    $(document).on("click", ".del_message", function () {
+        var message_id = $(this).attr("del_message_id");
+        if (confirm("是否删除？")) {
+            $.ajax({
+                url: "/message/delMessageById",
+                type: "get",
+                data: {"message_id": message_id},
+                success: function (result) {
+                    $("#otherMenu_3").click();
+                }, error: function (result) {
+                    alert("error");
+                }
+            });
+        }
+    });
+
+    //修改user信息
+    $(document).on("click", ".edit_user", function () {
+
+        $("#user_id_upd").prop("value", $(this).attr("edit_user_id"));
+        $("#user_name_upd").prop("value", $(this).attr("edit_user_name"));
+        $("#user_password_upd").prop("value", $(this).attr("edit_user_password"));
+
+        //弹出模态层
+        $("#updateUser").modal({
+            backdrop: "static"
+        });
+
+    });
+
+
+    //删除visitor
+    $(document).on("click", ".del_visitor", function () {
+        var visitor_id = $(this).attr("del_visitor_id");
+        if (confirm("是否删除？")) {
+            $.ajax({
+                url: "/visitor/delVisitor",
+                type: "get",
+                data: {"visitor_id": visitor_id},
+                success: function (result) {
+                    $("#visitor_manage").click();
+                }, error: function (result) {
+                    alert("error");
+                }
+            });
+        }
+    });
+
+    //同意
+    $(document).on("click", ".agree", function () {
+        var agree_id = $(this).attr("agree_id");
+        if (confirm("是否同意？")) {
+            $.ajax({
+                url: "/user/updateAgree",
+                type: "get",
+                data: {"user_id": agree_id},
+                success: function (result) {
+                    $("#applyForEpc_manage").click();
+                }, error: function (result) {
+                    alert("error");
+                }
+            });
+        }
+    });
+
+    //不同意
+    $(document).on("click", ".disagree", function () {
+        var disagree_id = $(this).attr("disagree_id");
+        $.ajax({
+            url: "/user/updateDisagree",
+            type: "get",
+            data: {"user_id": disagree_id},
+            success: function (result) {
+                $("#applyForEpc_manage").click();
+            }, error: function (result) {
+                alert("error");
+            }
+        });
+    });
+
+    //分页
+    function selectPage(result) {
+        $.ajax({
+            url: "/admin/selectAllLocation?page=" + result,
+            type: "get",
+            success: function (result) {
+                if (result.code == 200) {
+                    var htmladd_0 = '';
+                    $('div#main').empty();
+                    $('div#main').append('<h1 class="page-header">修改地址信息</h1>');
+                    htmladd_0 = '<table class="table" id="updateLocation_table">\n' +
+                        '            <tr>\n' +
+                        '                <th>城市编号</th>\n' +
+                        '                <th>名称</th>\n' +
+                        '                <th>风险等级</th>\n' +
+                        '            </tr>\n' +
+                        '        </table>';
+                    $("div#main").append(htmladd_0);
+                    $.each(result.extend.locationPageInfo.list, function (index, item) {
+                        var loc_idTd = $("<td></td>").append(item.loc_id);
+                        var loc_nameTd = $("<td></td>").append(item.loc_name);
+                        var loc_risklevelTd = $("<td></td>").append(item.loc_risklevel);
+                        //修改按钮
+                        var editLocBtn = $("<button></button>")
+                            .append("<span class='glyphicon glyphicon-pencil'></span>")
+                            .addClass("btn btn-primary edit_location");
+                        //添加id属性
+                        editLocBtn.attr("edit_loc_id", item.loc_id);
+                        //添加name属性
+                        editLocBtn.attr("edit_loc_name", item.loc_name);
+                        //添加数量属性
+                        editLocBtn.attr("edit_loc_risklevel", item.loc_risklevel);
+                        //删除按钮
+                        var delLocBtn = $("<button ></button>").append("<span class='glyphicon glyphicon-trash'></span>")
+                            .addClass("btn btn-danger del_location");
+                        delLocBtn.attr("del_loc_id", item.loc_id);//添加属性
+
+
+                        var opTd = $("<td></td>").append(editLocBtn).append(delLocBtn);
+                        if (parseInt(item.loc_risklevel) == 0) {
+                            $("<tr bgcolor='#baffaa'></tr>")
+                                .append(loc_idTd)
+                                .append(loc_nameTd)
+                                .append(loc_risklevelTd)
+                                .append(opTd)
+                                .appendTo("#updateLocation_table tbody");
+                        }
+                        if (parseInt(item.loc_risklevel) == 1) {
+                            $("<tr bgcolor='#fff3c5'></tr>")
+                                .append(loc_idTd)
+                                .append(loc_nameTd)
+                                .append(loc_risklevelTd)
+                                .append(opTd)
+                                .appendTo("#updateLocation_table tbody");
+                        }
+                        if (parseInt(item.loc_risklevel) == 2 || parseInt(item.loc_risklevel) == 3) {
+                            $("<tr bgcolor='#ffb5ab'></tr>")
+                                .append(loc_idTd)
+                                .append(loc_nameTd)
+                                .append(loc_risklevelTd)
+                                .append(opTd)
+                                .appendTo("#updateLocation_table tbody");
+                        }
+                    });
+                    var locationPageInfo = result.extend["locationPageInfo"];
+
+                    if (locationPageInfo.pageNum == 1) {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + locationPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + locationPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.nextPage + ')">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    } else if (locationPageInfo.pageNum == locationPageInfo.pages) {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.prePage + ')">上一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + locationPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + locationPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    } else {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.prePage + ')">上一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + locationPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + locationPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.nextPage + ')">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectPage(' + locationPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    }
+                    $("div#main").append(page);
+                } else if (result.code == 100) {
+                    $("div#main").append('<div class="alert alert-success">\n' +
+                        ' <strong>无城市信息</strong>\n' +
+                        '</div>');
+                }
+            }, error: function (result) {
+                alert("error!");
+            }
+        });
+    }
+
+    //收集分页
+    function selectCollectPage(result) {
+        $.ajax({
+            url: "/collect/selectAllCollect?page=" + result,
+            type: "get",
+            success: function (result) {
+                if (result.code == 200) {
+                    var htmladd_0 = '';
+                    $('div#main').empty();
+                    $('div#main').append('<h1 class="page-header">修改地址信息</h1>');
+                    htmladd_0 = '<table class="table" id="collect_table">\n' +
+                        '            <tr>\n' +
+                        '                <th>编号项目</th>\n' +
+                        '                <th>姓名</th>\n' +
+                        '                <th>性别</th>\n' +
+                        '                <th>班级</th>\n' +
+                        '                <th>身份证号码</th>\n' +
+                        '                <th>手机号</th>\n' +
+                        '                <th>父母手机号</th>\n' +
+                        '                <th>宿舍号</th>\n' +
+                        '                <th>家庭住址</th>\n' +
+                        '                <th>旅行史</th>\n' +
+                        '            </tr>\n' +
+                        '        </table>';
+                    $("div#main").append(htmladd_0);
+                    $.each(result.extend.collectPageInfo.list, function (index, item) {
+                        var loc_idTd = $("<td></td>").append(item.loc_id);
+                        var loc_nameTd = $("<td></td>").append(item.loc_name);
+                        var loc_risklevelTd = $("<td></td>").append(item.loc_risklevel);
+                        //修改按钮
+                        var editLocBtn = $("<button></button>")
+                            .append("<span class='glyphicon glyphicon-pencil'></span>")
+                            .addClass("btn btn-primary edit_location");
+                        //添加id属性
+                        editLocBtn.attr("edit_loc_id", item.loc_id);
+                        //添加name属性
+                        editLocBtn.attr("edit_loc_name", item.loc_name);
+                        //添加数量属性
+                        editLocBtn.attr("edit_loc_risklevel", item.loc_risklevel);
+                        //删除按钮
+                        var delLocBtn = $("<button ></button>").append("<span class='glyphicon glyphicon-trash'></span>")
+                            .addClass("btn btn-danger del_location");
+                        delLocBtn.attr("del_loc_id", item.loc_id);//添加属性
+
+
+                        var opTd = $("<td></td>").append(editLocBtn).append(delLocBtn);
+                        if (parseInt(item.loc_risklevel) == 0) {
+                            $("<tr bgcolor='#baffaa'></tr>")
+                                .append(loc_idTd)
+                                .append(loc_nameTd)
+                                .append(loc_risklevelTd)
+                                .append(opTd)
+                                .appendTo("#updateLocation_table tbody");
+                        }
+                        if (parseInt(item.loc_risklevel) == 1) {
+                            $("<tr bgcolor='#fff3c5'></tr>")
+                                .append(loc_idTd)
+                                .append(loc_nameTd)
+                                .append(loc_risklevelTd)
+                                .append(opTd)
+                                .appendTo("#updateLocation_table tbody");
+                        }
+                        if (parseInt(item.loc_risklevel) == 2 || parseInt(item.loc_risklevel) == 3) {
+                            $("<tr bgcolor='#ffb5ab'></tr>")
+                                .append(loc_idTd)
+                                .append(loc_nameTd)
+                                .append(loc_risklevelTd)
+                                .append(opTd)
+                                .appendTo("#updateLocation_table tbody");
+                        }
+                    });
+                    var collectPageInfo = result.extend["collectPageInfo"];
+
+                    if (collectPageInfo.pageNum == 1) {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + collectPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + collectPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.nextPage + ')">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    } else if (collectPageInfo.pageNum == locationPageInfo.pages) {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.prePage + ')">上一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + collectPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + collectPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    } else {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.prePage + ')">上一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + collectPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + collectPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.nextPage + ')">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectCollectPage(' + collectPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    }
+                } else if (result.code == 100) {
+                    $("div#main").append('<div class="alert alert-success">\n' +
+                        ' <strong>无收集项目</strong>\n' +
+                        '</div>');
+                }
+                $("div#main").append(page);
+            }, error: function (result) {
+                alert("error!");
+            }
+        });
+    }
+
+    //人员管理分页selectUserPage
+    function selectUserPage(result) {
+        $.ajax({
+            url: "/user/adminselectAllUser?page=" + result,
+            type: "get",
+            success: function (result) {
+                if (result.code == 200) {
+                    var htmladd_0 = '';
+                    $('div#main').empty();
+                    $('div#main').append('<h1 class="page-header">用户管理</h1>');
+                    htmladd_0 = '<table class="table" id="user_manage_table">\n' +
+                        '            <tr>\n' +
+                        '                <th>用户编号</th>\n' +
+                        '                <th>用户姓名</th>\n' +
+                        '                <th>密码</th>\n' +
+                        '                <th>用户类型</th>\n' +
+                        '            </tr>\n' +
+                        '        </table>';
+                    $("div#main").append(htmladd_0);
+                    $.each(result.extend.userPageInfo, function (index, item) {
+                        var user_idTd = $("<td></td>").append(item.user_id);
+                        var user_nameTd = $("<td></td>").append(item.user_name);
+                        var user_passwordTd = $("<td></td>").append(item.user_password);
+                        var user_typeTd = $("<td></td>").append(item.user_type);
+                        //修改按钮
+                        var editUserBtn = $("<button></button>")
+                            .append("<span class='glyphicon glyphicon-pencil'></span>")
+                            .addClass("btn btn-primary edit_User");
+                        //id
+                        editUserBtn.attr("edit_user_id", item.user_id);
+                        //添加name属性
+                        editUserBtn.attr("edit_user_name", item.user_name);
+                        //添加数量属性
+                        editUserBtn.attr("edit_user_password", item.user_password);
+                        //删除按钮
+                        var delUserBtn = $("<button ></button>").append("<span class='glyphicon glyphicon-trash'></span>")
+                            .addClass("btn btn-danger del_user");
+                        delUserBtn.attr("del_user_id", item.user_id);//添加属性
+
+                        var opTd = $("<td></td>").append(editUserBtn).append(delUserBtn);
+                        $("<tr></tr>")
+                            .append(user_idTd)
+                            .append(user_nameTd)
+                            .append(user_passwordTd)
+                            .append(user_typeTd)
+                            .append(opTd)
+                            .appendTo("#user_manage_table tbody");
+                    });
+                    //分页
+                    var userPageInfo = result.extend["userPageInfo"];
+
+                    if (userPageInfo.pages == 1) {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" >下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" >尾页</a></li>\n' +
+                            ' </ul>';
+                    }
+                    if (userPageInfo.pageNum == 1) {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.nextPage + ')">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    } else if (userPageInfo.pageNum == userPageInfo.pages) {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.prePage + ')">上一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    } else {
+                        var page = '<ul class="pagination">\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + 1 + ')">首页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.prePage + ')">上一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>第' + userPageInfo.pageNum + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link"><span>共' + userPageInfo.pages + '页</span></a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.nextPage + ')">下一页</a></li>\n' +
+                            '    <li class="page-item"><a class="page-link" onclick="selectUserPage(' + userPageInfo.pages + ')">尾页</a></li>\n' +
+                            ' </ul>';
+                    }
+                    $("div#main").append(page);
+                } else if (result.code == 100) {
+                    $("div#main").append('<div class="alert alert-success">\n' +
+                        ' <strong>无用户信息</strong>\n' +
+                        '</div>');
+                }
+            },
+            error: function (result) {
+                alert("error!");
+            }
+        });
+    }
+
+    //因为ajax异步加入的button无法进行jQuery操作，只能通过onclick=的方法，或可将ajax改为同步
+    function remind_btn() {
+        alert("提醒成功！");
+        window.localStorage.setItem('remind_judge', '201');
+    }
+
+    //下载预约信息
+    function downloadAppoint() {
+        window.location.href = "/appoint/downloadAllAppoint";
+    }
+
+    //下载全部收集项目
+    function downloadAllCollect() {
+        window.location.href = "/collect/downloadAllCollect";
+
+    }
+
+    //下载全部上一次项目
+    function downloadPreCollect() {
+        window.location.href = "/collect/downloadPreCollect";
+
+    }
+
+    //复选框选中传值
+    function submit_collect() {
+        window.localStorage.setItem("collect_already", "yes");
+        //清除学生端上次点击提交收集的缓存
+        localStorage.removeItem('submit_already');
+        //清空备选项
+        localStorage.removeItem('check_name');
+        localStorage.removeItem('check_sex');
+        localStorage.removeItem('check_grade');
+        localStorage.removeItem('check_idCard');
+        localStorage.removeItem('check_phoneNum');
+        localStorage.removeItem('check_parsNum');
+        localStorage.removeItem('check_dormitory');
+        localStorage.removeItem('check_loc');
+        localStorage.removeItem('check_travel');
+
+        if ($("#check_name").prop("checked") == true)
+            window.localStorage.setItem("check_name", "yes");
+        if ($("#check_sex").prop("checked") == true)
+            window.localStorage.setItem("check_sex", "yes");
+        if ($("#check_grade").prop("checked") == true)
+            window.localStorage.setItem("check_grade", "yes");
+        if ($("#check_idCard").prop("checked") == true)
+            window.localStorage.setItem("check_idCard", "yes");
+        if ($("#check_phoneNum").prop("checked") == true)
+            window.localStorage.setItem("check_phoneNum", "yes")
+        if ($("#check_parsNum").prop("checked") == true)
+            window.localStorage.setItem("check_parsNum", "yes")
+        if ($("#check_dormitory").prop("checked") == true)
+            window.localStorage.setItem("check_dormitory", "yes")
+        if ($("#check_loc").prop("checked") == true)
+            window.localStorage.setItem("check_loc", "yes")
+        if ($("#check_travel").prop("checked") == true)
+            window.localStorage.setItem("check_travel", "yes")
+        alert("提交成功！");
+        $("#selectCollect").click();
+    }
+
+    // 登出
+    function signOut() {
+        $.ajax({
+            url: "/admin/toSignOut",
+            type: "get",
+            data: {},
+            success: function (result) {
+                if (result.code == 200) {
+                    window.sessionStorage.setItem("login_admin_msg", "202");
+                    location.reload();
+                }
+            },
+            error: function (result) {
+                alert("error");
+            }
+        });
+    }
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="gb2312">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords"
+          content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>辽科大疫情防控平台</title>
+
+    <!--icheck 不重要-->
+    <link href="../../js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="../../js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="../../js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="../../js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar不重要-->
+    <link href="../../css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS 不重要-->
+    <link rel="stylesheet" href="../../js/morris-chart/morris.css">
+
+    <!--common重要-->
+    <link href="../../css/style_user.css" rel="stylesheet">
+    <!-- 不重要 -->
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../img/logo.ico"/>
+</head>
+
+<body class="sticky-header">
+
+<section>
+
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo 开始-->
+        <div class="logo">
+            <a href="/user/toIndex_epc"><img src="../../images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="/user/toIndex_epc"><img src="../../images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo 结束-->
+
+        <!--左侧导航栏开始-->
+        <div class="left-side-inner">
+
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="active"><a href="/user/toIndex_epc"><i class="fa fa-home"></i> <span>主页</span></a></li>
+                <li><a href="/user/toEpc_signIn"><i class="fa fa-laptop"></i> <span> 今日打卡</span></a>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>情况报备</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="/user/toEpc_applyForCon"> 访客出入报备</a></li>
+                        <li><a href="/user/toEpc_applyForSpecialCon"> 特殊事项报备</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/user/toEpc_message"><i class="fa fa-envelope"></i> <span>留言</span></a>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>账号管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="/user/toEpc_info"> 个人信息管理</a></li>
+                        <li><a href="/user/toEpc_repass"> 修改密码</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+
+        </div>
+    </div>
+    <!--左侧导航栏结束-->
+
+    <!-- 主体开始：除去左侧导航栏所有-->
+    <div class="main-content">
+
+        <!-- 上方导航栏开始 -->
+        <div class="header-section">
+
+            <!--左侧导航栏伸展开始-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--左侧导航栏伸展结束-->
+
+            <!--搜索框开始 action中跳转地址！-->
+            <form class="searchform" action="index.html" method="post">
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
+            </form>
+            <!--搜索框结束-->
+
+            <!-- 上方导航栏右侧通知 + 人物 开始-->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <!-- 上侧导航栏task开始 -->
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">你有 1 个挂起任务</h5>
+                            <ul class="dropdown-list user-list">
+                                <li class="new">
+                                    <a href="#">
+                                        <div class="task-info">
+                                            <div>Database update</div>
+                                        </div>
+                                        <div class="progress progress-striped">
+                                            <div style="width: 40%" aria-valuemax="100" aria-valuemin="0"
+                                                 aria-valuenow="40" role="progressbar"
+                                                 class="progress-bar progress-bar-warning">
+                                                <span class="">40%</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="new"><a href="">查看所有任务</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- 上侧导航栏task结束 -->
+
+
+                    <!-- 上方导航栏Email开始 -->
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">您有 1 封邮件 </h5>
+                            <ul class="dropdown-list normal-list">
+                                <li class="new">
+                                    <a href="">
+                                        <span class="thumb"><img src="../../images/photos/user1.png" alt=""/></span>
+                                        <span class="desc">
+                                          <span class="name">John Doe <span
+                                                  class="badge badge-success">new</span></span>
+                                          <span class="msg">Lorem ipsum dolor sit amet...</span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- 上方导航栏Email结束 -->
+
+                    <!-- 上方导航栏铃铛提醒开始 -->
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">注意事项</h5>
+                            <ul class="dropdown-list normal-list">
+                                <li class="new">
+                                    <a href="">
+                                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                        <span class="name">Server #1 overloaded.  </span>
+                                        <em class="small">34 mins</em>
+                                    </a>
+                                </li>
+
+                                <li class="new"><a href="">查看所有注意事项</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- 上方导航栏铃铛提醒结束 -->
+
+                    <!-- 上方导航栏User开始 -->
+                    <li id="login_epc">
+                        <a href="/user/toLogin_epc" class="btn btn-default dropdown-toggle">
+                            登&nbsp;&nbsp;录
+                            <span class="glyphicon glyphicon-new-window"></span>
+                        </a>
+                    </li>
+                    <!-- 上方导航栏User结束 -->
+
+                </ul>
+            </div>
+            <!--上方导航栏右侧通知 + 人物结束 -->
+        </div>
+        <!-- 上方导航栏结束-->
+
+
+        <!-- 页面内容开始-->
+        <!-- 主体头部开始 -->
+        <div class="page-heading">
+            <h3>
+                防疫员主页 <small>Index for EPC</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">主页</a>
+                </li>
+                <li class="active">Index For EPACS</li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+
+
+        <div class="wrapper">
+
+            <div class="panel col-md-1">
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="calendar-block ">
+                            <div class="cal1">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel col-md-4">
+                <header class="panel-heading">
+                    今日清单
+                    <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                                <a class="fa fa-times" href="javascript:;"></a>
+                             </span>
+                </header>
+                <div class="panel-body">
+                    <ul class="to-do-list" id="sortable-todo">
+                        <li class="clearfix">
+                                    <span class="drag-marker">
+                                    <i></i>
+                                    </span>
+                            <div class="todo-check pull-left">
+                                <input type="checkbox" value="None" id="todo-check"/>
+                                <label for="todo-check"></label>
+                            </div>
+                            <p class="todo-title">
+                                完成今日打卡内容
+                            </p>
+                            <div class="todo-actionlist pull-right clearfix">
+
+                                <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                                    <span class="drag-marker">
+                                    <i></i>
+                                    </span>
+                            <div class="todo-check pull-left">
+                                <input type="checkbox" value="None" id="todo-check1"/>
+                                <label for="todo-check1"></label>
+                            </div>
+                            <p class="todo-title">
+                                完成情况报备
+                            </p>
+                            <div class="todo-actionlist pull-right clearfix">
+
+                                <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                                    <span class="drag-marker">
+                                    <i></i>
+                                    </span>
+                            <div class="todo-check pull-left">
+                                <input type="checkbox" value="None" id="todo-check2"/>
+                                <label for="todo-check2"></label>
+                            </div>
+                            <p class="todo-title">
+                                进行留言
+                            </p>
+                            <div class="todo-actionlist pull-right clearfix">
+
+                                <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                                    <span class="drag-marker">
+                                    <i></i>
+                                    </span>
+                            <div class="todo-check pull-left">
+                                <input type="checkbox" value="None" id="todo-check3"/>
+                                <label for="todo-check3"></label>
+                            </div>
+                            <p class="todo-title">
+                                尽心特殊情况报备
+                            </p>
+                            <div class="todo-actionlist pull-right clearfix">
+
+                                <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                                    <span class="drag-marker">
+                                    <i></i>
+                                    </span>
+                            <div class="todo-check pull-left">
+                                <input type="checkbox" value="None" id="todo-check4"/>
+                                <label for="todo-check4"></label>
+                            </div>
+                            <p class="todo-title">
+                                修改密码
+                            </p>
+                            <div class="todo-actionlist pull-right clearfix">
+
+                                <a href="#" class="todo-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form role="form" class="form-inline">
+                                <div class="form-group todo-entry">
+                                    <input type="text" placeholder="Enter your ToDo List" class="form-control"
+                                           style="width: 100%">
+                                </div>
+                                <button class="btn btn-primary pull-right" type="submit">+</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel col-md-1">
+            </div>
+        </div>
+
+        <!-- 主体头部结束 -->
+
+
+        <!-- 主体中心结束 -->
+        <!--footer section start-->
+        <footer>
+            2021 &copy; Designed by JYQ.
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!--主体结束：出去左侧导航栏所有-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="../../js/jquery-migrate-1.2.1.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/modernizr.min.js"></script>
+<script src="../../js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="../../js/easypiechart/jquery.easypiechart.js"></script>
+<script src="../../js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="../../js/sparkline/jquery.sparkline.js"></script>
+<script src="../../js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="../../js/iCheck/jquery.icheck.js"></script>
+<script src="../../js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="../../js/flot-chart/jquery.flot.js"></script>
+<script src="../../js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="../../js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="../../js/morris-chart/morris.js"></script>
+<script src="../../js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="../../js/calendar/clndr.js"></script>
+<script src="../../js/calendar/evnt.calendar.init.js"></script>
+<script src="../../js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="../../js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="../../js/dashboard-chart-init.js"></script>
+
+<!-- 检查登陆状态 -->
+<script>
+    $(function () {
+        //登陆状态201
+        if (sessionStorage.getItem("login_epc_msg") == "201") {
+            //首先清空节点
+            $("#login_epc").empty();
+            //添加节点
+            var htmladd = "";
+            htmladd = '<a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
+                '<img src="../../images/photos/user-avatar.png" alt="" />' +
+                sessionStorage.getItem("epc_name") +
+                '<span class="caret"></span>' +
+                '</a>' +
+                '<ul class="dropdown-menu dropdown-menu-usermenu pull-right">' +
+                '<li><a href="/user/toEpc_info"><i class="fa fa-user"></i>  个人简介</a></li>' +
+                '<li><a href="#" onclick="signOut()" id="signOut"><i class="fa fa-sign-out"></i> 退出登录</a></li>' +
+                '</ul>';
+            $("#login_epc").append(htmladd);
+        }
+        if (sessionStorage.getItem("login_epc_msg") == "202") {
+            $("#login_epc").empty();
+            var htmlAdd = "";
+            htmlAdd = '<a href="/user/toLogin_epc" class="btn btn-default dropdown-toggle">' +
+                '登&nbsp;&nbsp;录' +
+                '<span class="glyphicon glyphicon-new-window"></span>' +
+                '</a>';
+            $("#login_epc").append(htmlAdd);
+        }
+    });
+
+    function signOut() {
+        $.ajax({
+            url: "/user/toSignOut",
+            type: "get",
+            data: {},
+            success: function (result) {
+                if (result.code == 200) {
+                    window.sessionStorage.setItem("login_epc_msg", "202");
+                    window.sessionStorage.setItem("epc_id", '');
+                    window.location.href = '/user/toIndex_epc';
+                }
+            },
+            error: function (result) {
+                alert("error");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

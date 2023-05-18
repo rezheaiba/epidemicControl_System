@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords"
+          content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+
+    <title>辽科大疫情防控平台</title>
+    <link rel="shortcut icon" href="../../img/logo.ico"/>
+
+    <!--icheck 不重要-->
+    <link href="../../js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="../../js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="../../js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="../../js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar不重要-->
+    <link href="../../css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS 不重要-->
+    <link rel="stylesheet" href="../../js/morris-chart/morris.css">
+
+    <!--common重要-->
+    <link href="../../css/style_user.css" rel="stylesheet">
+    <!-- 不重要 -->
+    <link href="../../css/style-responsive.css" rel="stylesheet">
+</head>
+
+<body class="sticky-header">
+
+<section>
+
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo 开始-->
+        <div class="logo">
+            <a href="/user/toIndex_user"><img src="../../images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="/user/toIndex_user"><img src="../../images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo 结束-->
+
+        <!--左侧导航栏开始-->
+        <div class="left-side-inner">
+
+            <ul class="nav nav-pills nav-stacked custom-nav" id="ul_0">
+                <li><a href="/user/toIndex_user"><i class="fa fa-home"></i> <span
+                        id="zhuye">主页</span></a></li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span id="daka">打卡</span></a>
+                    <ul class="sub-menu-list" id="ul_1">
+                        <li><a href="/user/toUser_signIn"> 今日打卡</a></li>
+                        <li><a href="#" id="SignInRecords"> 打卡记录</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>我的校园</span></a>
+                    <ul class="sub-menu-list" id="ul_2">
+                        <li><a href="/user/toUser_collect"> 普通收集</a></li>
+                        <li><a href="/user/toUser_applyForEpc"> 防疫员申请</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href="fontawesome.html"><i class="fa fa-bullhorn"></i> <span
+                        id="yuyue">预约项目</span></a>
+                    <ul class="sub-menu-list" id="ul_3">
+                        <li><a href="/user/toUser_appointNa"> 核酸检测预约</a></li>
+                        <li class="active"><a href="/user/toUser_appointVac"> 接种疫苗预约</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/user/toUser_message"><i class="fa fa-envelope"></i> <span>留言</span></a>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>账号管理</span></a>
+                    <ul class="sub-menu-list" id="ul_4">
+                        <li><a href="/user/toUser_info"> 个人信息管理</a></li>
+                        <li><a href="/user/toUser_repass"> 修改密码</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </div>
+        <!--左侧导航栏结束-->
+    </div>
+
+    <!-- 主体开始：除去左侧导航栏所有-->
+    <div class="main-content">
+
+        <!-- 上方导航栏开始 -->
+        <div class="header-section">
+
+            <!--左侧导航栏伸展开始-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--左侧导航栏伸展结束-->
+
+            <!--搜索框开始 action中跳转地址！-->
+            <form class="searchform" action="index.html" method="post">
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
+            </form>
+            <!--搜索框结束-->
+
+            <!-- 上方导航栏右侧通知 + 人物 开始-->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <!-- 上侧导航栏task开始 -->
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">你有 1 个挂起任务</h5>
+                            <ul class="dropdown-list user-list">
+                                <li class="new">
+                                    <a href="#">
+                                        <div class="task-info">
+                                            <div>Database update</div>
+                                        </div>
+                                        <div class="progress progress-striped">
+                                            <div style="width: 40%" aria-valuemax="100" aria-valuemin="0"
+                                                 aria-valuenow="40" role="progressbar"
+                                                 class="progress-bar progress-bar-warning">
+                                                <span class="">40%</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="new"><a href="">查看所有任务</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- 上侧导航栏task结束 -->
+
+                    <!-- 上方导航栏Email开始 -->
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">您有 1 封邮件 </h5>
+                            <ul class="dropdown-list normal-list">
+                                <li class="new">
+                                    <a href="">
+                                        <span class="thumb"><img src="../../images/photos/user1.png" alt=""/></span>
+                                        <span class="desc">
+                                          <span class="name">John Doe <span
+                                                  class="badge badge-success">new</span></span>
+                                          <span class="msg">Lorem ipsum dolor sit amet...</span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- 上方导航栏Email结束 -->
+
+                    <!-- 上方导航栏铃铛提醒开始 -->
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">注意事项</h5>
+                            <ul class="dropdown-list normal-list">
+                                <li class="new">
+                                    <a href="">
+                                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                        <span class="name">Server #1 overloaded.  </span>
+                                        <em class="small">34 mins</em>
+                                    </a>
+                                </li>
+
+                                <li class="new"><a href="">查看所有注意事项</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- 上方导航栏铃铛提醒结束 -->
+
+                    <!-- 上方导航栏User开始 -->
+                    <li id="login_user">
+                        <a href="/user/toLogin" class="btn btn-default dropdown-toggle">
+                            登&nbsp;&nbsp;录
+                            <span class="glyphicon glyphicon-new-window"></span>
+                        </a>
+                    </li>
+                    <!-- 上方导航栏User结束 -->
+
+                </ul>
+            </div>
+            <!--上方导航栏右侧通知 + 人物结束 -->
+        </div>
+        <!-- 上方导航栏结束-->
+
+
+        <!-- 页面内容开始-->
+        <!-- 主体头部开始 -->
+        <div class="page-heading" id="main">
+            <section class="panel">
+                <header class="panel-heading">
+                    疫苗检测预约
+                </header>
+                <div class="panel-body" id="mainSignIn">
+                    <form class="form-horizontal adminex-form" method="get" onsubmit="return false;">
+                        <div class="panel-body" id="main_appointNa">
+                            <form class="form-horizontal adminex-form" method="get" onsubmit="return false;">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">姓名</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control round-input" id="appoint_username"
+                                               readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">手机号</label>
+                                    <div class="col-sm-5" id="appoint_phonenum_div">
+                                        <input type="text" class="form-control round-input" id="appoint_phonenum">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">预约项目</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control round-input" id="appoint_project"
+                                               readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label"> &nbsp;</label>
+                                    <div class="col-sm-5">
+                                        <div>
+                                            <button class="btn btn-primary" value="提交" id="appoint_submit">提交
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+        <!-- 主体头部结束 -->
+
+
+        <!-- 主体中心开始 -->
+
+        <!-- 主体中心结束 -->
+        <!--footer section start-->
+        <footer>
+            2021 &copy; Designed by JYQ.
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!--主体结束：出去左侧导航栏所有-->
+</section>
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="../../js/jquery-migrate-1.2.1.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/modernizr.min.js"></script>
+<script src="../../js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="../../js/easypiechart/jquery.easypiechart.js"></script>
+<script src="../../js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="../../js/sparkline/jquery.sparkline.js"></script>
+<script src="../../js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="../../js/iCheck/jquery.icheck.js"></script>
+<script src="../../js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="../../js/flot-chart/jquery.flot.js"></script>
+<script src="../../js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="../../js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="../../js/morris-chart/morris.js"></script>
+<script src="../../js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="../../js/calendar/clndr.js"></script>
+<script src="../../js/calendar/evnt.calendar.init.js"></script>
+<script src="../../js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="../../js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="../../js/dashboard-chart-init.js"></script>
+
+<!-- All js for user -->
+<script>
+
+    //在本页的具体操作
+    $(function () {
+        //点击打卡记录
+        $("#SignInRecords").click(function () {
+            $("ul#ul_3").children("li:eq(1)").attr('class', '');
+        });
+
+        //模拟点击预约项目
+        $("#yuyue").click();
+
+        //登录状态为未登录时拦截，定向到首页
+        if (sessionStorage.getItem("login_msg") == 202) {
+            alert("请先登录！")
+            $("#mainSignIn").empty();
+            window.location.href = "/user/toIndex_user";
+        }
+
+
+        //请先登录，登录拦截
+        if (sessionStorage.getItem('user_name') == '' || sessionStorage.getItem('user_name') == null) {
+            alert("请先登录！")
+            window.location.href = '/user/toIndex_user';
+        }
+    });
+
+
+    //本页的业务逻辑
+    $(function () {
+        //获取用户名
+        $("#appoint_username").prop('value', sessionStorage.getItem('user_name'));
+        $("#appoint_project").prop('value', '接种疫苗');
+        $("#effect_phonenum").remove();
+        //电话号码键盘抬起时间
+        $("#appoint_phonenum").keyup(function () {
+            $("#effect_phonenum").remove();
+        });
+
+        $("#appoint_submit").click(function () {
+            $("#effect_phonenum").remove();
+            var num = parseInt($("#appoint_phonenum").val().trim().length);
+            if ($("#appoint_phonenum").prop('value') == '') {
+                $("#appoint_phonenum").focus();
+            } else if (num != 11) {
+                var htmladdThree = "";
+                htmladdThree = '<span id="effect_phonenum" style="color: #ff0000">请输入11位合法手机号！</span>';
+                $("#appoint_phonenum_div").append(htmladdThree);
+            } else {
+
+                $.ajax({
+                    url: "/appoint/insertAppointVac",
+                    type: "get",
+                    data: {
+                        "appoint_userid": sessionStorage.getItem("user_id"),
+                        "appoint_username": sessionStorage.getItem("user_name"),
+                        "appoint_phonenum": $("#appoint_phonenum").val(),
+                        "appoint_project": $("#appoint_project").val(),
+                    },
+                    success: function (result) {
+                        if (result.code == 200) {
+                            $("#main_appointNa").empty();
+                            $("#main_appointNa").append('<div class="alert alert-success">\n' +
+                                ' <strong>预约成功！</strong>\n' +
+                                '</div>');
+                        }else if (result.code == 100 && result.extend["already"] == 0){
+                            $("#main_appointNa").empty();
+                            $("#main_appointNa").append('<div class="alert alert-danger">\n' +
+                                ' <strong>预约失败，暂无疫苗，请耐心等待！</strong>\n' +
+                                '</div>');
+                        }else if (result.code == 100 && result.extend["already"] == 1){
+                            $("#main_appointNa").empty();
+                            $("#main_appointNa").append('<div class="alert alert-danger">\n' +
+                                ' <strong>预约失败，已预约！</strong>\n' +
+                                '</div>');
+                        }
+                    }, error: function (result) {
+                        alert("error")
+                    }
+                });
+            }
+        });
+    });
+
+    $(function () {
+
+        /**
+         * 登陆状态201
+         */
+
+        if (sessionStorage.getItem("login_msg") == "201") {
+            //首先清空节点
+            $("#login_user").empty();
+            //添加节点
+            var htmladd = "";
+            htmladd = '<a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
+                '<img src="../../images/photos/user-avatar.png" alt="" />' +
+                sessionStorage.getItem("user_name") +
+                '<span class="caret"></span>' +
+                '</a>' +
+                '<ul class="dropdown-menu dropdown-menu-usermenu pull-right">' +
+                '<li><a href="/user/toUser_info"><i class="fa fa-user"></i>  个人简介</a></li>' +
+                '<li><a href="#" onclick="signOut()" id="signOut"><i class="fa fa-sign-out"></i> 退出登录</a></li>' +
+                '</ul>';
+            $("#login_user").append(htmladd);
+        }
+        /**
+         * 非登陆状态202
+         */
+        if (sessionStorage.getItem("login_msg") == "202") {
+            $("#login_user").empty();
+            var htmlAdd = "";
+            htmlAdd = '<a href="/user/toLogin" class="btn btn-default dropdown-toggle">' +
+                '登&nbsp;&nbsp;录' +
+                '<span class="glyphicon glyphicon-new-window"></span>' +
+                '</a>';
+            $("#login_user").append(htmlAdd);
+        }
+
+        /**
+         *点击打卡记录的总操作
+         * 在不同的页面中，有对点击操作具体增加了一些操作
+         */
+
+        $("#SignInRecords").click(function () {
+            $("ul#ul_1 li").attr('class', '');
+            $("ul#ul_2 li").attr('class', '');
+            $("ul#ul_3 li").attr('class', '');
+            $("ul#ul_4 li").attr('class', '');
+            //触发一次点击事件
+
+            $("ul#ul_1").children("li:eq(2)").attr('class', 'active');
+            $.ajax({
+                url: "/userinfo/selectSignInRecords",
+                type: "get",
+                data: {"user_id": sessionStorage.getItem("user_id")},
+                success: function (result) {
+                    $("div#main").empty();
+                    var htmlAddOne = '';
+                    htmlAddOne = '<section class="panel">\n' +
+                        '            <header class="panel-heading">\n' +
+                        '                打卡记录\n' +
+                        '            </header>\n' +
+                        '            <table class="table" id="RecordTable">\n' +
+                        '                <tr>\n' +
+                        '                    <th>用户编号</th>\n' +
+                        '                    <th>姓名</th>\n' +
+                        '                    <th>温度</th>\n' +
+                        '                    <th>身体状况</th>\n' +
+                        '                    <th>接触情况</th>\n' +
+                        '                    <th>地址</th>\n' +
+                        '                    <th>提交时间</th>\n' +
+                        '                </tr>\n' +
+                        '            </table>\n' +
+                        '        </section>';
+                    $("div#main").append(htmlAddOne);
+                    if (result.code == 200) {
+                        $.each(result.extend.userInfos, function (index, item) {
+                            var user_idTd = $("<td></td>").append(item.user_id);
+                            var user_nameTd = $("<td></td>").append(item.user_name);
+                            var user_temperatureTd = $("<td></td>").append(item.user_temperature);
+                            var physical_conditionTd = $("<td></td>").append(item.physical_condition);
+                            var contact_conditionTd = $("<td></td>").append(item.contact_condition);
+                            var user_locTd = $("<td></td>").append(item.user_loc);
+                            var operate_timeTd = $("<td></td>").append(item.operate_time);
+                            $("<tr></tr>")
+                                .append(user_idTd)
+                                .append(user_nameTd)
+                                .append(user_temperatureTd)
+                                .append(physical_conditionTd)
+                                .append(contact_conditionTd)
+                                .append(user_locTd)
+                                .append(operate_timeTd)
+                                .appendTo("#RecordTable tbody");
+                        });
+                    } else {
+                        $("div#main").append("暂无打卡记录");
+                    }
+                }, error: function (result) {
+                    alert("请先登录");
+                    location.reload();
+                }
+            });
+        });
+
+        /*
+        //点击每一个项目时的未登录拦截
+        if (sessionStorage.getItem("login_msg") == 202
+        || sessionStorage.getItem("user_id") == null
+        || sessionStorage.getItem("user_id") == '') {
+            alert("请先登录！")
+            window.location.href = "/user/toIndex_user";
+        }*/
+    });
+
+
+    //登出
+    function signOut() {
+        $.ajax({
+            url: "/user/toSignOut",
+            type: "get",
+            data: {},
+            success: function (result) {
+                if (result.code == 200) {
+                    //非登录状态
+                    window.sessionStorage.setItem("login_msg", "202");
+                    //id置空
+                    window.sessionStorage.setItem("user_id", '');
+                    // sessionStorage.removeItem("user_id");
+                    window.location.href = '/user/toIndex_user';
+                }
+            },
+            error: function (result) {
+                alert("error");
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>

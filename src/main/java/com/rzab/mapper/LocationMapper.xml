@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rzab.dao.LocationDao">
+
+    <select id="selectLocByName" resultType="location">
+        select loc_id, loc_name, loc_risklevel
+        from location
+        where loc_name like "%" #{loc_name} "%"
+    </select>
+
+    <insert id="insertNewLocation">
+        insert into location(loc_name, loc_risklevel)
+        values (#{loc_name}, #{loc_risklevel})
+    </insert>
+</mapper>

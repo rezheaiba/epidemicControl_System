@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>辽科大疫情防控平台</title>
+    <link rel="shortcut icon" href="../../img/logo.ico"/>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="Latest Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"/>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Meta tag Keywords -->
+        <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <!--引入css和js-->
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css" media="all"/>
+    <!-- Style-CSS -->
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+    <!-- web-fonts -->
+    <link
+            href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+            rel="stylesheet">
+
+    <!--引入css和js结束-->
+</head>
+
+<body>
+<div class="main-bg">
+    <!-- title -->
+    <h2 class="threed">&nbsp;</h2>
+    <!-- title -->
+    <!-- content -->
+    <div class="sub-main-w3">
+        <div class="bg-content-w3pvt">
+            <div class="top-content-style">
+                <img src="../../img/USATL.png" style="width: 100px;height: 100px" alt="图片加载失败"/>
+            </div>
+            <form method="post" onsubmit="return false;">
+                <p class="legend">
+                    欢迎登录<span class="glyphicon glyphicon-hand-down"></span>
+                </p>
+                <div class="input">
+                    <input type="text" placeholder="Account" name="admin_name" id="admin_name" required/>
+                    <span class="fa fa-envelope"></span>
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="Password" name="admin_password" id="admin_password"
+                           required/> <span class="fa fa-unlock"></span>
+                </div>
+                <button class="btn submit" id="loginBtn" onclick="toLogin()">
+                    <span class="fa fa-sign-in"></span>
+                </button>
+            </form>
+
+            <a href="#" class="bottom-text-w3ls"></a>
+        </div>
+    </div>
+    <!-- //content -->
+    <!-- copyright -->
+    <div class="copyright">
+        <h2>&copy; 2021 Latest Login Form. All rights reserved | JYQ</h2>
+    </div>
+    <!-- //copyright -->
+</div>
+<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
+<script type="text/javascript">
+    function toLogin() {
+        var admin_password = document.getElementById("admin_password").value;
+        var admin_name = document.getElementById("admin_name").value;
+        $.ajax({
+            url: "/admin/adminIndex",
+            type: "post",
+            data: {"admin_name": admin_name, "admin_password": admin_password},
+            success: function (result) {
+                //200成功跳入首页
+                if (result.code == 200) {
+                    //
+                    window.sessionStorage.setItem("login_admin_msg","201");
+                    window.sessionStorage.setItem("admin_name",result.extend["admin"].admin_name);
+                    window.location.href = "/admin/toIndex_admin";
+                } else if (result.code == 100 && result.extend["nullFlag"] !== "1") {
+                    //刷新本页面
+                    alert("用户名或密码有误！")
+                    // 此处若日后有时间改成bootstrap的提示框并且实现几秒后自动消失
+                    location.reload();
+                }
+            },
+            error: function (result) {
+                alert("error");
+            }
+        });
+    }
+</script>
+</body>
+
+</html>
